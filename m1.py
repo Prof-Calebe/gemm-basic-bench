@@ -16,15 +16,13 @@ def mult(X,Y,result):
 				result[i][j] += X[i][k] * Y[k][j]
 
 
-size=3
+size=200
 
 X = numpy.random.random((size,size))
 Y = numpy.random.random((size,size))
 result = numpy.zeros(shape=(size,size))
 
 a = datetime.now()
-mult(X,Y,result)
-mult(X,Y,result)
 mult(X,Y,result)
 b = datetime.now()
 print (repr(count)+":"+repr((b-a).total_seconds()/count))
