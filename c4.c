@@ -30,8 +30,6 @@ int main()
             " A(%ix%i) and matrix B(%ix%i)\n\n", m, k, k, n);
     alpha = 1.0; beta = 0.0;
 
-    //printf (" Allocating memory for matrices aligned on 64-byte boundary for better \n"
-    //        " performance \n\n");
     A = (double *)mkl_malloc( m*k*sizeof( double ), 64 );
     B = (double *)mkl_malloc( k*n*sizeof( double ), 64 );
     C = (double *)mkl_malloc( m*n*sizeof( double ), 64 );
@@ -43,7 +41,6 @@ int main()
       return 1;
     }
 
-    //printf (" Intializing matrix data \n\n");
     for (i = 0; i < (m*k); i++) {
         A[i] = (double)(i+1);
     }
@@ -65,36 +62,10 @@ int main()
     printf ("Total time = %f seconds\n",
          (double) (b.tv_usec - a.tv_usec) / 1000000 +
          (double) (b.tv_sec - a.tv_sec));
-/*
-    printf (" Top left corner of matrix A: \n");
-    for (i=0; i<min(m,6); i++) {
-      for (j=0; j<min(k,6); j++) {
-        printf ("%12.0f", A[j+i*k]);
-      }
-      printf ("\n");
-    }
 
-    printf ("\n Top left corner of matrix B: \n");
-    for (i=0; i<min(k,6); i++) {
-      for (j=0; j<min(n,6); j++) {
-        printf ("%12.0f", B[j+i*n]);
-      }
-      printf ("\n");
-    }
-    
-    printf ("\n Top left corner of matrix C: \n");
-    for (i=0; i<min(m,6); i++) {
-      for (j=0; j<min(n,6); j++) {
-        printf ("%12.5G", C[j+i*n]);
-      }
-      printf ("\n");
-    }
-*/
-    //printf ("\n Deallocating memory \n\n");
     mkl_free(A);
     mkl_free(B);
     mkl_free(C);
 
-    //printf (" Example completed. \n\n");
     return 0;
 }
